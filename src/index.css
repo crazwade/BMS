@@ -1,0 +1,10 @@
+/* index.css */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 自訂樣式 */
+.my-custom-class {
+  color: red;
+}
