@@ -1,5 +1,5 @@
 <template>
-  <div class="flex justify-between bg-color-primary h-[60px] px-4">
+  <div class="flex justify-between bg-gray-600 h-[60px] px-4">
     <div class="flex">
       <div
         class="flex items-center text-white mr-2 transition-all"
@@ -9,37 +9,29 @@
           <Expand @click="closeMenu" />
         </el-icon>
       </div>
-      <div class="flex justify-center">
+      <div class="flex justify-center p-2">
         <img src="../../assets/icon.png" class="cursor-pointer" />
       </div>
     </div>
     <div class="flex items-center">
-      <span class="text-gray-300 hidden mr-1 sm:block"> TEST </span>
-      <el-divider direction="vertical" />
-      <el-dropdown ref="dropdown1">
-        <el-button class="linkBtn text-gray-300 hover:text-white">
-          <el-badge :value="3" :max="99">
-            <el-icon size="20px">
-              <Bell />
-            </el-icon>
-          </el-badge>
-          <div class="ml-2">消息中心</div>
-        </el-button>
-        <template #dropdown>
-          <el-dropdown-menu>
-            <el-dropdown-item><div>測試測試1</div></el-dropdown-item>
-            <el-dropdown-item><div>測試測試2</div></el-dropdown-item>
-            <el-dropdown-item><div>測試測試3</div></el-dropdown-item>
-          </el-dropdown-menu>
-        </template>
-      </el-dropdown>
+      <el-button
+        class="text-gray-300 hover:text-white hover:bg-transparent border-none"
+        @focus="blurOnFocus"
+      >
+        <el-badge :value="3" :max="99">
+          <el-icon size="20px">
+            <Bell />
+          </el-icon>
+        </el-badge>
+        <div class="ml-2">消息中心</div>
+      </el-button>
       <el-divider direction="vertical" />
       <el-dropdown>
-        <el-button class="linkBtn text-gray-300 hover:text-white" link>
+        <el-button class="linkBtn" link @focus="blurOnFocus">
           <el-icon size="20px">
-            <Icon icon="mingcute:user-2-line" />
+            <UserFilled />
           </el-icon>
-          <div class="ml-2 text-gray-300">userName</div>
+          <div class="ml-2">userName</div>
           <el-icon class="el-icon--right">
             <ArrowDown />
           </el-icon>
@@ -73,6 +65,10 @@ interface MenuItemProps {
   isShowMenu: boolean;
 }
 
+const blurOnFocus = (e: any) => {
+  e.target.blur();
+};
+
 // 左上角Menu開關
 const isShow = computed(() => props.isShowMenu);
 
@@ -87,3 +83,12 @@ const closeMenu = () => {
   emits("closeMenu");
 };
 </script>
+<style scoped>
+.linkBtn {
+  color: #dfdfdf !important;
+}
+
+.linkBtn:hover {
+  color: #fff !important;
+}
+</style>

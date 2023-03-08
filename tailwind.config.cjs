@@ -20,6 +20,9 @@ module.exports = {
       minWidth: {
         min: "290px",
       },
+      backgroundColor: {
+        transparent: "transparent",
+      },
     },
   },
   screens: {
@@ -29,7 +32,9 @@ module.exports = {
     xl: "1280px",
   },
   variants: {
-    extend: {},
+    extend: {
+      backgroundColor: ["active"],
+    },
   },
   plugins: [],
 };

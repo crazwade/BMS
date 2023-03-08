@@ -63,7 +63,7 @@ const munuItemList = [
   {
     id: "4",
     name: "財務紀錄區",
-    icon: "Money",
+    icon: "Tickets",
   },
   {
     id: "5",
@@ -78,7 +78,7 @@ const munuItemList = [
   {
     id: "7",
     name: "意見回饋區",
-    icon: "Memo",
+    icon: "ChatLineSquare",
   },
 ];
 
