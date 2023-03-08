@@ -12,6 +12,10 @@ module.exports = {
         "color-warning-light-8": "var(--el-color-warning-light-8)",
         "color-warning-light-9": "var(--el-color-warning-light-9)",
         "color-primary": "var(--el-color-primary)",
+        primary: {
+          DEFAULT: "var(--el-color-primary)",
+          contrast: "#ffffff",
+        },
       },
       minWidth: {
         min: "290px",
