@@ -4,7 +4,7 @@
     :show-close="false"
     :direction="'ltr'"
     size="30%"
-    class="bg-color-primary"
+    class="bg-primary"
     :before-close="closeMenu"
   >
     <div class="flex flex-col h-full">
