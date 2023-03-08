@@ -1,40 +1,64 @@
 <template>
-  <el-form label-position="left" label-width="150px" style="max-width: 460px">
-    <el-space fill>
-      <el-alert type="info" show-icon :closable="false">
-        <p>輸入您的帳號:</p>
-      </el-alert>
-      <el-form-item label="帳號">
-        <el-input v-model="formAccessibility.account" />
-      </el-form-item>
-    </el-space>
-    <el-space fill>
-      <el-alert type="info" show-icon :closable="false">
-        <p>輸入您的密碼:</p>
-      </el-alert>
-      <el-form-item label="密碼">
-        <el-input v-model="formAccessibility.password" />
-      </el-form-item>
-    </el-space>
-    <el-form-item>
-      <el-button type="primary">
-        登入<el-icon class="el-icon--right" @click="submit"
-          ><ArrowRight
-        /></el-icon>
-      </el-button>
-    </el-form-item>
-  </el-form>
+  <div class="relative h-screen flex justify-center items-center">
+    <img
+      class="absolute inset-0 w-full h-full object-cover blur-md opacity-70"
+      src="@/assets/icon.png"
+    />
+    <div class="relative z-10 w-96 bg-white rounded shadow-lg p-8">
+      <h2 class="text-xl font-bold mb-6">Welcome back!</h2>
+      <form class="space-y-4" @submit.prevent="handleSubmit">
+        <el-form-item>
+          <el-input v-model="form.account" placeholder="Account" />
+        </el-form-item>
+        <el-form-item>
+          <el-input
+            v-model="form.password"
+            type="password"
+            placeholder="Password"
+          />
+        </el-form-item>
+        <el-form-item>
+          <el-button
+            native-type="submit"
+            :loading="loading"
+            :disabled="loading"
+            class="w-full bg-primary text-white hover:bg-primary-contrast"
+          >
+            Log In
+          </el-button>
+        </el-form-item>
+      </form>
+      <p class="text-gray-500 text-xs mt-4">
+        &copy;{{ new Date().getFullYear() }} Company. All rights reserved.
+      </p>
+    </div>
+  </div>
 </template>
 
 <script lang="ts" setup>
-import { reactive } from "vue";
+import { reactive, ref } from "vue";
+import { ElInput, ElFormItem, ElButton } from "element-plus";
+import { useRouter } from "vue-router";
 
-const formAccessibility = reactive({
+const router = useRouter();
+
+interface Form {
+  account: string;
+  password: string;
+}
+
+const form: Form = reactive({
   account: "",
   password: "",
 });
+const loading = ref(false);
 
-const submit = () => {
-  console.log(formAccessibility);
+const handleSubmit = async () => {
+  console.log(form);
+  loading.value = true;
+  setTimeout(() => {
+    loading.value = false;
+    router.push("/");
+  }, 2000);
 };
 </script>
