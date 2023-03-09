@@ -38,9 +38,11 @@
 <script lang="ts" setup>
 import { reactive, ref } from "vue";
 import { ElInput, ElFormItem, ElButton } from "element-plus";
+import { useUserStore } from "../../store/store";
 import { useRouter } from "vue-router";
 
 const router = useRouter();
+const userSoter = useUserStore();
 
 interface Form {
   account: string;
@@ -58,6 +60,7 @@ const handleSubmit = async () => {
   loading.value = true;
   setTimeout(() => {
     loading.value = false;
+    userSoter.SET_TOKEN("token_OTC");
     router.push("/");
   }, 2000);
 };
