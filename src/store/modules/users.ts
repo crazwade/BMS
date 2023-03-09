@@ -50,7 +50,7 @@ const useUserStore = defineStore({
     async INIT_USER(): Promise<boolean> {
       try {
         const userStore = useUserStore();
-        // TODO 取得使用者資訊
+        // TODO API 取得使用者資訊
         // const userResp = await getCurrentUserData();
         const userResp = {
           success: true,
