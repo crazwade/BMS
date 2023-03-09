@@ -26,7 +26,7 @@
             color:
               tagView === item.id ? 'var(--el-menu-active-color)' : 'black',
           }"
-          >{{ item.name }}</span
+          >{{ item.title }}</span
         >
       </el-menu-item>
     </el-menu>
@@ -37,15 +37,16 @@
 import { computed, ref } from "vue";
 import { defineEmits } from "vue";
 
-const tagView = ref("1");
+const tagView = ref("0");
 
 interface MenuItemProps {
   height: string;
   showMenu: boolean;
   itemList: {
     id: string;
-    name: string;
+    title: string;
     icon: string;
+    name: string;
   }[];
 }
 
