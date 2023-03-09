@@ -1,6 +1,6 @@
 import { showMessage } from "./common/common";
 import router from "./router";
-import { useUserStore } from "./store/store";
+import { useUserStore, usePermissionStore } from "./store/store";
 // import getCurrentUserData from './api/getCurrentUserData/getCurrentUserData';
 // import { getRolePermissions } from './api/permission/getPermissions';
 
@@ -8,6 +8,7 @@ const whiteList = ["/login"];
 
 router.beforeEach(async (to, from, next): Promise<void> => {
   const userStore = useUserStore();
+  const permissionStore = usePermissionStore();
 
   userStore.GET_LOCAL_TOKEN();
   const hasToken = userStore.token;
@@ -32,9 +33,12 @@ router.beforeEach(async (to, from, next): Promise<void> => {
         }
 
         // TODO 取得permision route
-        // const { success } = await permissionStore.INIT_PERMISSION(
-        //   userStore.role
-        // );
+        const initPermissionSuccess = await permissionStore.INIT_PERMISSION();
+
+        if (!initPermissionSuccess) {
+          next("/login");
+          return;
+        }
 
         // if (!success) {
         //   next("/login");
