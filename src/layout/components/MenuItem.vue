@@ -3,50 +3,76 @@
     v-model="showMenu"
     :show-close="false"
     :direction="'ltr'"
-    size="30%"
-    class="bg-color-primary"
-    :before-close="closeMenu"
+    size="25%"
+    :before-close="closeMenuSpace"
+    :with-header="false"
+    class="MenuItem"
+    :style="{ height: height, marginTop: '60px' }"
   >
-    <div class="flex flex-col h-full">
-      <h5 class="px-6 py-4 text-xl font-semibold border-b border-gray-300">
-        El-Menu
-      </h5>
-      <el-menu default-active="5" class="flex-grow border-0" text-color="#000">
-        <el-menu-item index="1" @click="closeMenu">
-          <el-icon :color="'red'"><location /></el-icon>
-          <span>Navigator Two</span>
-        </el-menu-item>
-        <el-menu-item index="2" @click="closeMenu">
-          <el-icon class="text-gray-600 mr-2"><document /></el-icon>
-          <span>Navigator Three</span>
-        </el-menu-item>
-        <el-menu-item index="3" @click="closeMenu">
-          <el-icon class="text-gray-600 mr-2"><setting /></el-icon>
-          <span>Navigator Four</span>
-        </el-menu-item>
-      </el-menu>
-    </div>
+    <el-menu :default-active="tagView" class="flex-grow border-0">
+      <el-menu-item
+        v-for="item in itemList"
+        :key="item.id"
+        :index="item.id"
+        @click="closeMenu(item.id.toString())"
+        :class="tagView === item.id ? 'bg-gray-200' : ''"
+      >
+        <el-icon class="text-gray-600 mr-2"
+          ><component :is="item.icon"
+        /></el-icon>
+        <span
+          class="text-black text-base font-bold"
+          :style="{
+            color:
+              tagView === item.id ? 'var(--el-menu-active-color)' : 'black',
+          }"
+          >{{ item.name }}</span
+        >
+      </el-menu-item>
+    </el-menu>
   </el-drawer>
 </template>
 
 <script setup lang="ts">
-import { computed } from "vue";
+import { computed, ref } from "vue";
 import { defineEmits } from "vue";
 
+const tagView = ref("1");
+
 interface MenuItemProps {
+  height: string;
   showMenu: boolean;
+  itemList: {
+    id: string;
+    name: string;
+    icon: string;
+  }[];
 }
 
 // props data
 const props = defineProps<MenuItemProps>();
 
 const showMenu = computed(() => props.showMenu);
+const height = computed(() => props.height);
+const itemList = computed(() => props.itemList);
 
 // 定義 emits
 const emits = defineEmits(["closeMenu"]);
 
 // 關閉選單 emit
-const closeMenu = () => {
+const closeMenuSpace = () => {
+  emits("closeMenu");
+};
+
+// 關閉選單 emit
+const closeMenu = (target: string) => {
+  tagView.value = target;
   emits("closeMenu");
 };
 </script>
+
+<style>
+.MenuItem .el-drawer__body {
+  padding: 0;
+}
+</style>
