@@ -25,7 +25,7 @@
       >
         <el-main class="p-0 w-full h-full">
           <div class="h-full">
-            <div class="h-full p-4 flex flex-col justify-between item-center">
+            <div class="h-full p-4 flex flex-col">
               <router-view />
             </div>
           </div>
