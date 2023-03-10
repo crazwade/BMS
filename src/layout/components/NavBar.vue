@@ -31,7 +31,7 @@
           <el-icon size="20px">
             <UserFilled />
           </el-icon>
-          <div class="ml-2">userName</div>
+          <div class="ml-2">{{ props.account }}</div>
           <el-icon class="el-icon--right">
             <ArrowDown />
           </el-icon>
@@ -63,6 +63,7 @@ import { defineEmits } from "vue";
 
 interface MenuItemProps {
   isShowMenu: boolean;
+  account: string;
 }
 
 const blurOnFocus = (e: any) => {
