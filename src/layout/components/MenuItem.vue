@@ -14,7 +14,7 @@
         v-for="item in itemList"
         :key="item.id"
         :index="item.id"
-        @click="closeMenu(item.id.toString())"
+        @click="changePage(item.id.toString(), item.name)"
         :class="tagView === item.id ? 'bg-gray-200' : ''"
       >
         <el-icon class="text-gray-600 mr-2"
@@ -36,6 +36,9 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
 import { defineEmits } from "vue";
+import { useRouter } from "vue-router";
+
+const router = useRouter();
 
 const tagView = ref("0");
 
@@ -66,7 +69,8 @@ const closeMenuSpace = () => {
 };
 
 // 關閉選單 emit
-const closeMenu = (target: string) => {
+const changePage = (target: string, path: string) => {
+  router.push({ path });
   tagView.value = target;
   emits("closeMenu");
 };
