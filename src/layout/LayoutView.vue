@@ -20,14 +20,14 @@
       />
       <!-- Main -->
       <div
-        class="absolute inset-0 p-0 w-full"
+        class="absolute inset-0 p-0 w-full h-full"
         :style="{ height: height, zIndex: showMenu ? 0 : 1 }"
       >
-        <el-main class="p-0 w-full">
+        <el-main class="p-0 w-full h-full">
           <div class="h-full">
-            <el-scrollbar>
+            <div class="h-full p-4 flex flex-col justify-between item-center">
               <router-view />
-            </el-scrollbar>
+            </div>
           </div>
         </el-main>
       </div>
