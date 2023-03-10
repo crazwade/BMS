@@ -2,7 +2,11 @@
   <!-- Header -->
   <el-container>
     <el-header class="p-0">
-      <NavBar @closeMenu="swiutchMenu" :isShowMenu="showMenu" />
+      <NavBar
+        @closeMenu="swiutchMenu"
+        :isShowMenu="showMenu"
+        :account="userStore.nickname"
+      />
     </el-header>
   </el-container>
   <el-container>
@@ -35,11 +39,12 @@
 import { computed, ref } from "vue";
 import NavBar from "./components/NavBar.vue";
 import MenuItem from "./components/MenuItem.vue";
-import { usePermissionStore } from "../store/store";
+import { usePermissionStore, useUserStore } from "../store/store";
 
 const height = computed(() => "calc( 100vh - 60px )");
 const showMenu = ref(false);
 const permissionStore = usePermissionStore();
+const userStore = useUserStore();
 
 // 關閉開啟選單
 const swiutchMenu = () => {
