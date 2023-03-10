@@ -8,7 +8,7 @@ import { init as initHttp } from "./api/request";
 import App from "./App.vue";
 import router from "./router";
 
-import "./index.css"; // 引入 tailwindcss 的樣式表
+import "./style/main.css"; // 引入 tailwindcss 的樣式表
 import "./init";
 
 async function main() {
