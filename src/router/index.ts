@@ -12,9 +12,18 @@ const router = createRouter({
     },
     {
       path: "/",
+      redirect: "/home",
+    },
+    {
+      path: "/",
       component: Layout,
       name: "Main",
       children: [
+        {
+          path: "home",
+          name: "HomePage",
+          component: () => import("../views/home/HomePage.vue"),
+        },
         {
           path: "attendanceRecords",
           name: "AttendanceRecords",
