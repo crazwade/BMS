@@ -7,3 +7,16 @@ h1 {
   font-weight: bold;
   margin-bottom: 20px;
 }
+
+.el-button {
+  background-color: var(--el-button-bg-color);
+}
+
+.el-button.transparent {
+  background-color: transparent;
+}
+
+input::selection {
+  color: white;
+  background-color: #318dfe;
+}
