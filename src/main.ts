@@ -19,9 +19,9 @@ async function main() {
     headers: {
       "Content-Type": "application/json",
     },
-    params: {
-      apiKey: "dummy_apikey",
-    },
+    // params: {
+    //   apiKey: "dummy_apikey",
+    // },
 
     transformRequest: [
       (data, headers) => {
