@@ -13,7 +13,7 @@ import "./init";
 
 async function main() {
   initHttp({
-    baseURL: "http://localhost:5174/",
+    baseURL: import.meta.env.VITE_APP_BASE_URL,
     withCredentials: true,
     timeout: 30000,
     headers: {
