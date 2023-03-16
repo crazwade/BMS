@@ -15,7 +15,7 @@
     </div>
     <div class="flex items-center">
       <el-button
-        class="text-gray-300 hover:text-white hover:bg-transparent border-none"
+        class="text-gray-300 hover:text-white hover:bg-transparent border-none transparent"
         @focus="blurOnFocus"
       >
         <el-badge :value="3" :max="99">
