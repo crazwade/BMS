@@ -38,3 +38,20 @@ export function showMsgBox(
       }
     });
 }
+
+/**
+ * 物件轉換成Map
+ * @param data [key: number]: string || [key: string]: string;
+ * @returns Map
+ */
+export const convertObjToMap = (
+  arr: { [key: string]: string }[]
+): Map<string, string> => {
+  const map = new Map<string, string>();
+  map.set("all", "全部");
+  arr.forEach((obj) => {
+    const [key, value] = Object.entries(obj)[0];
+    map.set(key, value);
+  });
+  return map;
+};
