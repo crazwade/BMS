@@ -3,7 +3,7 @@
     v-model="showMenu"
     :show-close="false"
     :direction="'ltr'"
-    size="25%"
+    size="170px"
     :before-close="closeMenuSpace"
     :with-header="false"
     class="MenuItem"
