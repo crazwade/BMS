@@ -63,7 +63,7 @@ const handleSubmit = async () => {
   loading.value = true;
   setTimeout(() => {
     loading.value = false;
-    showMessage(message ?? "成功", success ? "success" : "error");
+    showMessage(message ?? "登入成功", success ? "success" : "error");
     if (success) {
       userSoter.SET_TOKEN("token_OTC");
       router.push("/");
