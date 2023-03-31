@@ -40,6 +40,8 @@ import { reactive, ref } from "vue";
 import { ElInput, ElFormItem, ElButton } from "element-plus";
 import { useUserStore } from "../../store/store";
 import { useRouter } from "vue-router";
+import { login } from "./api/api";
+import { showMessage } from "../../common/common";
 
 const router = useRouter();
 const userSoter = useUserStore();
@@ -56,12 +58,16 @@ const form: Form = reactive({
 const loading = ref(false);
 
 const handleSubmit = async () => {
-  console.log(form);
+  const res = await login(form);
+  const { success, message } = res;
   loading.value = true;
   setTimeout(() => {
     loading.value = false;
-    userSoter.SET_TOKEN("token_OTC");
-    router.push("/");
+    showMessage(message ?? "成功");
+    if (success) {
+      userSoter.SET_TOKEN("token_OTC");
+      router.push("/");
+    }
   }, 2000);
 };
 </script>
