@@ -48,7 +48,7 @@
               <div>變更密碼</div>
             </el-dropdown-item>
             <el-dropdown-item>
-              <div>登出</div>
+              <div @click="logout">登出</div>
             </el-dropdown-item>
           </el-dropdown-menu>
         </template>
@@ -60,6 +60,13 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import { defineEmits } from "vue";
+import { useUserStore } from "../../store/store";
+import { useRouter } from "vue-router";
+import { showMessage } from "../../common/common";
+import logoutApi from "../../api/api/logout";
+
+const router = useRouter();
+const userSoter = useUserStore();
 
 interface MenuItemProps {
   isShowMenu: boolean;
@@ -82,6 +89,18 @@ const emits = defineEmits(["closeMenu"]);
 // 關閉選單 emit
 const closeMenu = () => {
   emits("closeMenu");
+};
+
+const logout = async () => {
+  const apiResp = await logoutApi();
+
+  const { success, message } = apiResp;
+
+  showMessage(message ?? "登出成功", success ? "success" : "error");
+  if (success) {
+    userSoter.RESET_INFO();
+    router.push("/login");
+  }
 };
 </script>
 <style scoped>

@@ -35,6 +35,15 @@ app.post("/login", (req, res) => {
   });
 });
 
+app.post("/logout", (req, res) => {
+  res.status(200).send({
+    code: "0001",
+    action: "/logout",
+    msg: "成功",
+    data: null,
+  });
+});
+
 app.listen(3000, () => {
   console.log("Server started on port 3000");
 });
