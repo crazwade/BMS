@@ -11,9 +11,11 @@ const usePermissionStore = defineStore({
   id: "permissions",
   state: (): {
     permission: string[];
+    flatRoute: string[];
     route: RouteData[];
   } => ({
     permission: [],
+    flatRoute: [],
     route: [],
   }),
   actions: {
@@ -44,7 +46,7 @@ const usePermissionStore = defineStore({
                 id: "0",
                 title: "首頁",
                 icon: "HomeFilled",
-                name: "Home",
+                name: "HomePage",
               },
               {
                 id: "1",
@@ -104,6 +106,7 @@ const usePermissionStore = defineStore({
         }));
 
         permissionStore.SET_ROUTE_DATE(routeData);
+        permissionStore.SET_ROUTE_FLAT(routeData);
 
         return true;
       } catch (error) {
@@ -118,6 +121,9 @@ const usePermissionStore = defineStore({
     // 設定路由資訊
     SET_ROUTE_DATE(data: RouteData[]) {
       this.route = [...data];
+    },
+    SET_ROUTE_FLAT(data: RouteData[]) {
+      this.flatRoute = data.map((item) => item.name);
     },
   },
 });

@@ -1,8 +1,6 @@
 import { showMessage } from "./common/common";
 import router from "./router";
 import { useUserStore, usePermissionStore } from "./store/store";
-// import getCurrentUserData from './api/getCurrentUserData/getCurrentUserData';
-// import { getRolePermissions } from './api/permission/getPermissions';
 
 const whiteList = ["/login"];
 
@@ -38,6 +36,14 @@ router.beforeEach(async (to, from, next): Promise<void> => {
         if (!initPermissionSuccess) {
           next("/login");
           return;
+        }
+
+        if (!permissionStore.flatRoute.includes(String(to.name))) {
+          if (to.name === "") {
+            return;
+          }
+          showMessage("權限不足or頁面不存在", "warning");
+          next("/404");
         }
 
         // if (!success) {
