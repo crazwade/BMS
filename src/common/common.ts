@@ -55,3 +55,13 @@ export const convertObjToMap = (
   });
   return map;
 };
+
+/**
+ * 字串第一個字轉成小寫
+ * @param str 字串
+ * @returns 字串
+ */
+export const toCamelCase = (str: string) => {
+  if (!str) return "";
+  return str.charAt(0).toLowerCase() + str.slice(1);
+};
