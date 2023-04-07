@@ -22,7 +22,6 @@ const usePermissionStore = defineStore({
     // 初始化權限
     async INIT_PERMISSION(): Promise<boolean> {
       try {
-        const permissionStore = usePermissionStore();
         // TODO API 取得權限
         const permissionResp = {
           success: true,
@@ -35,7 +34,7 @@ const usePermissionStore = defineStore({
           return false;
         }
 
-        permissionStore.SET_PERMISSION_DATE(permissionResp.data.permissions);
+        this.SET_PERMISSION_DATE(permissionResp.data.permissions);
 
         // TODO API 取得路由 Sidebar
         const routeResp = {
@@ -105,8 +104,8 @@ const usePermissionStore = defineStore({
           name: data.name,
         }));
 
-        permissionStore.SET_ROUTE_DATE(routeData);
-        permissionStore.SET_ROUTE_FLAT(routeData);
+        this.SET_ROUTE_DATE(routeData);
+        this.SET_ROUTE_FLAT(routeData);
 
         return true;
       } catch (error) {
