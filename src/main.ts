@@ -5,6 +5,7 @@ import "element-plus/dist/index.css";
 import * as ElementPlusIconsVue from "@element-plus/icons-vue";
 import { init as initHttp } from "./api/request";
 import useStatusStore from "./store/dataStore";
+import interceptedPermission from "./api/intercepted/permission";
 
 import App from "./App.vue";
 import router from "./router";
@@ -60,6 +61,9 @@ async function main() {
   for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
     app.component(key, component);
   }
+
+  // request 攔截
+  interceptedPermission();
 
   app.use(createPinia());
   app.use(router);
