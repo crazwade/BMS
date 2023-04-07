@@ -52,8 +52,8 @@ interface Form {
 }
 
 const form: Form = reactive({
-  account: "",
-  password: "",
+  account: "jacky",
+  password: "jacky777",
 });
 const loading = ref(false);
 
