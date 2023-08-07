@@ -22,7 +22,7 @@
             native-type="submit"
             :loading="loading"
             :disabled="loading"
-            class="w-full bg-primary text-white hover:bg-primary-contrast"
+            class="w-full bg-primary text-blue-400 hover:text-blue-600"
           >
             Log In
           </el-button>
@@ -58,16 +58,19 @@ const form: Form = reactive({
 const loading = ref(false);
 
 const handleSubmit = async () => {
-  const res = await login(form);
-  const { success, message } = res;
-  loading.value = true;
-  setTimeout(() => {
-    loading.value = false;
-    showMessage(message ?? "登入成功", success ? "success" : "error");
-    if (success) {
-      userSoter.SET_TOKEN("token_OTC");
-      router.push("/");
-    }
-  }, 2000);
+  userSoter.SET_TOKEN("token_OTC");
+  router.push("/");
+  console.log("登入");
+  // const res = await login(form);
+  // const { success, message } = res;
+  // loading.value = true;
+  // setTimeout(() => {
+  //   loading.value = false;
+  //   showMessage(message ?? "登入成功", success ? "success" : "error");
+  //   if (success) {
+  //     userSoter.SET_TOKEN("token_OTC");
+  //     router.push("/");
+  //   }
+  // }, 2000);
 };
 </script>

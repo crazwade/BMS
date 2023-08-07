@@ -92,15 +92,18 @@ const closeMenu = () => {
 };
 
 const logout = async () => {
-  const apiResp = await logoutApi();
+  userSoter.RESET_INFO();
+  router.push("/login");
+  console.log("登出");
+  // const apiResp = await logoutApi();
 
-  const { success, message } = apiResp;
+  // const { success, message } = apiResp;
 
-  showMessage(message ?? "登出成功", success ? "success" : "error");
-  if (success) {
-    userSoter.RESET_INFO();
-    router.push("/login");
-  }
+  // showMessage(message ?? "登出成功", success ? "success" : "error");
+  // if (success) {
+  //   userSoter.RESET_INFO();
+  //   router.push("/login");
+  // }
 };
 </script>
 <style scoped>
