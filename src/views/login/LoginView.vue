@@ -2,7 +2,7 @@
   <div class="relative h-screen flex justify-center items-center">
     <img
       class="absolute inset-0 w-full h-full object-cover blur-md opacity-70"
-      src="@/assets/icon.png"
+      src="@/assets/logo.png"
     />
     <div class="relative z-10 w-96 bg-white rounded shadow-lg p-8">
       <h2 class="text-xl font-bold mb-6">Welcome back!</h2>

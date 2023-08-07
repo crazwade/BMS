@@ -10,7 +10,7 @@
         </el-icon>
       </div>
       <div class="flex justify-center p-2">
-        <img src="../../assets/icon.png" class="cursor-pointer" />
+        <img src="../../assets/logo.png" class="cursor-pointer" />
       </div>
     </div>
     <div class="flex items-center">
