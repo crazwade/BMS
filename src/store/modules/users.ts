@@ -16,17 +16,7 @@ interface UserType {
 }
 
 interface Admin {
-  token: string;
-  uid: number;
-  account: string;
   nickname: string;
-  isDisabled: boolean;
-  lastLoginTime: string;
-  role: string;
-  onlineStatus: boolean;
-  createdAt: string;
-  updatedAt: string;
-  updatedByAdmin: number;
 }
 
 const useUserStore = defineStore({
@@ -47,48 +37,14 @@ const useUserStore = defineStore({
   }),
   actions: {
     // 初始化使用者
-    async INIT_USER(): Promise<boolean> {
-      try {
-        const userStore = useUserStore();
-        // TODO API 取得使用者資訊
-        // const userResp = await getCurrentUserData();
-        const userResp = {
-          success: true,
-          data: {
-            token: "FAKE_TOKEN",
-            uid: 0,
-            account: "Jacky0309",
-            nickname: "Jacky Wu",
-            isDisabled: false,
-            lastLoginTime: "2023/03/09 00:00:00",
-            role: "Admin",
-            onlineStatus: true,
-            createdAt: "2023/03/08 00:00:00",
-            updatedAt: "2023/03/09 00:00:01",
-            updatedByAdmin: 0,
-          },
-        };
-        if (!userResp.success || !userResp.data) {
-          return false;
-        }
-
-        userStore.SET_USER_DATE(userResp.data);
-        this.isInit = true;
-
-        return true;
-      } catch (error) {
-        console.error(error);
-        return false;
-      }
+    INIT_USER(respData: { account: string }) {
+      this.token = "FAKE_TOKEN";
+      this.nickname = respData.account;
     },
     // 設定Token
-    SET_TOKEN(token = "") {
+    SET_TOKEN(token: string = "") {
       this.SET_LOCAL_TOKEN(token);
       this.token = token;
-    },
-    // 設定使用者資訊
-    SET_USER_DATE(data: Admin) {
-      Object.assign(this, data);
     },
     // 取得本地Token
     GET_LOCAL_TOKEN() {

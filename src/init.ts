@@ -23,12 +23,12 @@ router.beforeEach(async (to, from, next): Promise<void> => {
         }
 
         // 初始化 使用者資訊
-        const initUserSuccess = await userStore.INIT_USER();
+        // const initUserSuccess = await userStore.INIT_USER();
 
-        if (!initUserSuccess) {
-          next("/login");
-          return;
-        }
+        // if (!initUserSuccess) {
+        //   next("/login");
+        //   return;
+        // }
 
         // 初始化 權限以及路由資訊
         const initPermissionSuccess = await permissionStore.INIT_PERMISSION();

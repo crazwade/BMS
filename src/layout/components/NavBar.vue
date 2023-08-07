@@ -39,9 +39,6 @@
         <template #dropdown>
           <el-dropdown-menu>
             <el-dropdown-item>
-              <div>account</div>
-            </el-dropdown-item>
-            <el-dropdown-item>
               <div>修改暱稱</div>
             </el-dropdown-item>
             <el-dropdown-item>

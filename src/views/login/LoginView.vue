@@ -59,6 +59,9 @@ const loading = ref(false);
 
 const handleSubmit = async () => {
   userSoter.SET_TOKEN("token_OTC");
+  userSoter.INIT_USER({
+    account: form.account,
+  });
   router.push("/");
   console.log("登入");
   // const res = await login(form);
