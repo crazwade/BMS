@@ -67,7 +67,7 @@ function mapHttpMethodToPermission(method: string): string {
 
 export default function interceptedPermission() {
   const request = useRequest();
-
+  // @ts-ignore
   request.interceptors.request.use((config: AxiosRequestConfig) => {
     if (config.url === undefined || config.method === undefined) {
       return Promise.reject(new ApiError(apiErrorCode.錯誤請求));

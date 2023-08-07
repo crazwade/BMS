@@ -37,7 +37,7 @@ let instance: AxiosInstance;
 
 export function init(config: AxiosRequestConfig) {
   instance = axios.create(config);
-
+  // @ts-ignore
   instance.interceptors.request.use((config: AxiosRequestConfig) => {
     if (!navigator.onLine) {
       return Promise.reject(new Error("offline"));
