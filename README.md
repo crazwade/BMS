@@ -1,46 +1,24 @@
-# basketball
+# 後臺管理系統 (Backstage Management System)
 
-This template should help get you started developing with Vue 3 in Vite.
+這是一個後臺管理系統的專案，用於管理和操作您的內容和資料。它基於 Vue.js 和 Express 框架構建，並使用 Element Plus UI 庫提供豐富的使用者界面。
 
-## Recommended IDE Setup
+## 功能特點
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+- 使用 Vue.js 和 Element Plus 創建直觀的使用者界面。
+- 通過 Express 提供後端 API 支援，實現數據的管理和操作。
+- 使用 Axios 執行前端與後端之間的數據通信。
+- 使用 Pinia 狀態管理庫管理應用程序的狀態。
+- 遵循 TypeScript 進行開發，提供更穩定的代碼。
+- 使用 Tailwind CSS 和 PostCSS 實現自定義的樣式設計。
 
-## Type Support for `.vue` Imports in TS
+## 開始使用
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+1. 安裝依賴：運行 `npm install` 或 `yarn` 安裝專案所需的依賴。
 
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
+2. 開發模式：運行 `npm run dev` 或 `yarn dev` 以在開發模式下啟動前端應用。
 
-1. Disable the built-in TypeScript Extension
-    1) Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-    2) Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
+3. 構建應用：運行 `npm run build` 或 `yarn build` 以構建生產就緒的前端應用。
 
-## Customize configuration
+4. 啟動服務器：運行 `npm run server` 或 `yarn server` 以啟動 Express 服務器。
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Type-Check, Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+5. 開始使用：打開瀏覽器，訪問 http://localhost:3000 以開始使用後臺管理系統。
