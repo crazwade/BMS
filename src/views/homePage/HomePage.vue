@@ -40,8 +40,8 @@ const pieOptions = ref({
       display: true,
       text: "會員比例",
       font: {
-        size: 20, // 調整 title 字體大小
-        weight: "bold", // 調整 title 字體粗細
+        size: 20,
+        weight: "bold",
       },
     },
   },
