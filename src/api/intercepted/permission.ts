@@ -76,7 +76,6 @@ export default function interceptedPermission() {
     // POST/members CRUD + PATH
     const checkURL = `${transformMethod.toUpperCase()}${config.url}`;
     if (!checkPath(checkURL)) {
-      // TODO 確認正式站要不要刪除
       console.log(`block: ${checkURL}`);
       return Promise.reject(new ApiError(apiErrorCode.沒有權限));
     }

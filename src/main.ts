@@ -4,7 +4,6 @@ import ElementPlus from "element-plus";
 import "element-plus/dist/index.css";
 import * as ElementPlusIconsVue from "@element-plus/icons-vue";
 import { init as initHttp } from "./api/request";
-import useStatusStore from "./store/dataStore";
 import interceptedPermission from "./api/intercepted/permission";
 
 import App from "./App.vue";
@@ -67,9 +66,6 @@ async function main() {
 
   app.use(createPinia());
   app.use(router);
-
-  const dataStore = useStatusStore();
-  dataStore.SET_ALL_STATUS();
 
   app.use(ElementPlus);
   app.mount("#app");

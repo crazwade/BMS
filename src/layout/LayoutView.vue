@@ -5,7 +5,7 @@
       <NavBar
         @closeMenu="swiutchMenu"
         :isShowMenu="showMenu"
-        :account="userStore.nickname"
+        :account="userStore.account"
       />
     </el-header>
   </el-container>
