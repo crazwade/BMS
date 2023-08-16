@@ -9,8 +9,8 @@
           <Expand @click="closeMenu" />
         </el-icon>
       </div>
-      <div class="flex justify-center p-2">
-        <img src="../../assets/logo.png" class="cursor-pointer" />
+      <div class="flex justify-center py-2">
+        <img src="../../assets/logo.png" class="cursor-pointer h-full" />
       </div>
     </div>
     <div class="flex items-center">
