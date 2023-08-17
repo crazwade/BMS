@@ -46,10 +46,12 @@ router.beforeEach(async (to, from, next): Promise<void> => {
           next("/404");
         }
 
-        // if (!success) {
-        //   next("/login");
-        //   return;
-        // }
+        if (userStore.account === "") {
+          showMessage("逾時請重新登入", "warning");
+          await userStore.RESET_INFO();
+          next("/login");
+          return;
+        }
 
         next();
       } catch (error) {

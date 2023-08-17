@@ -38,13 +38,16 @@
 <script lang="ts" setup>
 import { reactive, ref } from "vue";
 import { ElInput, ElFormItem, ElButton } from "element-plus";
-import { useUserStore } from "../../store/store";
+import { useUserStore, useMemberStore } from "../../store/store";
 import { useRouter } from "vue-router";
 import { login } from "./api/api";
+import { ElMessage } from "element-plus";
 import { showMessage } from "../../common/common";
+import { memberData } from "../../fakeData";
 
 const router = useRouter();
-const userSoter = useUserStore();
+const userStore = useUserStore();
+const membersStore = useMemberStore();
 
 interface Form {
   account: string;
@@ -58,22 +61,35 @@ const form: Form = reactive({
 const loading = ref(false);
 
 const handleSubmit = async () => {
-  userSoter.SET_TOKEN("token_OTC");
-  userSoter.INIT_USER({
-    account: form.account,
-  });
-  router.push("/");
-  console.log("登入");
-  // const res = await login(form);
-  // const { success, message } = res;
-  // loading.value = true;
-  // setTimeout(() => {
-  //   loading.value = false;
-  //   showMessage(message ?? "登入成功", success ? "success" : "error");
-  //   if (success) {
-  //     userSoter.SET_TOKEN("token_OTC");
-  //     router.push("/");
-  //   }
-  // }, 2000);
+  loading.value = true;
+  try {
+    const res = await login(form);
+    const { success, message } = res;
+
+    if (!success) {
+      showMessage(message ?? "", "warning");
+      loading.value = false;
+      return;
+    }
+
+    showMessage("登入成功", "success");
+    loading.value = false;
+    userStore.SET_TOKEN("token_OTC");
+    userStore.INIT_USER({
+      account: form.account,
+    });
+    router.push("/");
+  } catch (error: any) {
+    showMessage(error.message, "error");
+    loading.value = false;
+    // TODO 如果登入不成功這邊要調整，這邊使DEMO使用
+    membersStore.setMemberData(memberData);
+    userStore.SET_TOKEN("token_OTC");
+    userStore.INIT_USER({
+      account: form.account,
+    });
+    router.push("/");
+    console.warn("使用假資料");
+  }
 };
 </script>
