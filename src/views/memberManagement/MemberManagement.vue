@@ -1,11 +1,11 @@
 <template>
-  <div>
+  <div class="flex-col">
     <div class="text-2xl font-extrabold text-gray-600 flex items-center">
       <el-icon class="mr-2"><UserFilled /></el-icon>
       成員管理區
     </div>
-    <div class="my-1">
-      <div class="flex flex-row items-center">
+    <div class="my-1 h-full flex flex-col">
+      <div class="flex flex-row items-center my-3">
         <el-form-item label="學生姓名：">
           <el-input
             v-model="searchData.account"
@@ -27,54 +27,52 @@
             />
           </el-select>
         </el-form-item>
-        <el-button class="mb-[18px] ml-3" @click="updateCurrentData()"
-          >搜尋</el-button
+        <el-button
+          class="mb-[18px] ml-3"
+          @click="updateCurrentData()"
+          type="success"
         >
+          搜尋
+        </el-button>
       </div>
-      <el-table
-        :data="currentData"
-        border
-        height="440"
-        style="width: 100%"
-        :scrollbar-always-on="true"
-      >
-        <el-table-column prop="account" label="名稱" width="180" />
-        <el-table-column prop="memberType" label="會員身分" width="180">
-          <template #default="{ row }">
-            {{ MemberTypeMap.get(row.memberType) }}
-          </template>
-        </el-table-column>
-        <el-table-column prop="createTime" label="創建時間" />
-      </el-table>
-      <el-pagination
-        layout="total, sizes, prev, pager, next"
-        :page-sizes="[10, 20, 30]"
-        :page-size="pageSize"
-        :total="tableData.length"
-        @size-change="handleSizeChange"
-        @current-change="handleCurrentChange"
-        class="justify-end pt-2"
-      />
+      <div>
+        <el-table
+          :data="currentData"
+          border
+          height="440"
+          style="width: 100%"
+          :scrollbar-always-on="true"
+        >
+          <el-table-column prop="account" label="名稱" width="180" />
+          <el-table-column prop="memberType" label="會員身分" width="180">
+            <template #default="{ row }">
+              {{ MemberTypeMap.get(row.memberType) }}
+            </template>
+          </el-table-column>
+          <el-table-column prop="createTime" label="創建時間" />
+        </el-table>
+        <PaginationItem
+          :total="paginationData.total"
+          :pageSize="paginationData.pageSize"
+          @sizeChange="handleSizeChange"
+          @currentChange="handleCurrentChange"
+        />
+      </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref, onMounted, reactive } from "vue";
+import { useMemberStore } from "../../store/store";
+import PaginationItem from "../../components/PaginationItem.vue";
+import type { MemberType } from "@/type/member.interface";
 
-type AccountMember = {
-  account: string;
-  memberType: string;
-  createTime: string;
-};
+const useStore = useMemberStore();
 
-const MemberTypeMap = new Map([
-  ["normalMember", "一般會員"],
-  ["seniorMember", "高級會員"],
-  ["honoraryMember", "尊榮會員"],
-]);
+const MemberTypeMap: Map<string, string> = useStore.memberTypeMap;
 
-const tableData: AccountMember[] = [
+const tableData: MemberType[] = [
   {
     account: "jacky",
     memberType: "normalMember",
@@ -357,31 +355,35 @@ const tableData: AccountMember[] = [
   },
 ];
 
-const pageSize = ref(10);
-const currentPage = ref(1);
+const paginationData = reactive({
+  total: 0,
+  pageSize: 10,
+  currentPage: 1,
+});
+
 const searchData = reactive({
   account: "",
   memberType: "",
 });
 
-const currentData = ref<AccountMember[]>([]);
+const currentData = ref<MemberType[]>([]);
 
 const handleSizeChange = (newSize: number) => {
-  pageSize.value = newSize;
+  paginationData.pageSize = newSize;
   updateCurrentData();
 };
 
 const handleCurrentChange = (newPage: number) => {
-  currentPage.value = newPage;
+  paginationData.currentPage = newPage;
   updateCurrentData();
 };
 
 const updateCurrentData = () => {
-  console.log(searchData);
-  const startIndex = (currentPage.value - 1) * pageSize.value;
-  const endIndex = startIndex + pageSize.value;
+  const startIndex: number =
+    (paginationData.currentPage - 1) * paginationData.pageSize;
+  const endIndex: number = startIndex + paginationData.pageSize;
 
-  let filteredData = tableData;
+  let filteredData: MemberType[] = tableData;
 
   if (searchData.account) {
     filteredData = filteredData.filter((item) =>
@@ -394,6 +396,8 @@ const updateCurrentData = () => {
       (item) => item.memberType === searchData.memberType
     );
   }
+
+  paginationData.total = filteredData.length;
 
   currentData.value = filteredData.slice(startIndex, endIndex);
 };

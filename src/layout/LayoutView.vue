@@ -10,7 +10,7 @@
     </el-header>
   </el-container>
   <el-container>
-    <div class="absolute w-full" :style="{ height: height }">
+    <div class="w-full" :style="{ height: height }">
       <!-- Menu -->
       <MenuItem
         :showMenu="showMenu"
@@ -20,7 +20,7 @@
       />
       <!-- Main -->
       <div
-        class="absolute inset-0 p-0 w-full h-full"
+        class="inset-0 p-0 w-full h-full"
         :style="{ height: height, zIndex: showMenu ? 0 : 1 }"
       >
         <el-main class="p-0 w-full h-full">
