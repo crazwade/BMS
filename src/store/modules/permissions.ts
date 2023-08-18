@@ -1,4 +1,4 @@
-import { defineStore } from "pinia";
+import { defineStore } from 'pinia';
 
 interface RouteData {
   id: string;
@@ -8,7 +8,7 @@ interface RouteData {
 }
 
 const usePermissionStore = defineStore({
-  id: "permissions",
+  id: 'permissions',
   state: (): {
     permission: string[];
     flatRoute: string[];
@@ -26,7 +26,7 @@ const usePermissionStore = defineStore({
         const permissionResp = {
           success: true,
           data: {
-            permissions: ["READ/me", "POST/login", "POST/logout"],
+            permissions: ['READ/me', 'POST/login', 'POST/logout'],
           },
         };
 
@@ -42,52 +42,52 @@ const usePermissionStore = defineStore({
           data: {
             route: [
               {
-                id: "0",
-                title: "首頁",
-                icon: "HomeFilled",
-                name: "HomePage",
+                id: '0',
+                title: '首頁',
+                icon: 'HomeFilled',
+                name: 'HomePage',
               },
               {
-                id: "1",
-                title: "成員管理區",
-                icon: "UserFilled",
-                name: "MemberManagement",
+                id: '1',
+                title: '成員管理區',
+                icon: 'UserFilled',
+                name: 'MemberManagement',
               },
               {
-                id: "2",
-                title: "出席紀錄區",
-                icon: "List",
-                name: "AttendanceRecords",
+                id: '2',
+                title: '出席紀錄區',
+                icon: 'List',
+                name: 'AttendanceRecords',
               },
               {
-                id: "3",
-                title: "操作紀錄區",
-                icon: "EditPen",
-                name: "OperationRecords",
+                id: '3',
+                title: '操作紀錄區',
+                icon: 'EditPen',
+                name: 'OperationRecords',
               },
               {
-                id: "4",
-                title: "財務紀錄區",
-                icon: "Tickets",
-                name: "FinancialRecords",
+                id: '4',
+                title: '財務紀錄區',
+                icon: 'Tickets',
+                name: 'FinancialRecords',
               },
               {
-                id: "5",
-                title: "社費收取區",
-                icon: "Money",
-                name: "FeeCollection",
+                id: '5',
+                title: '社費收取區',
+                icon: 'Money',
+                name: 'FeeCollection',
               },
               {
-                id: "6",
-                title: "活動紀錄區",
-                icon: "Basketball",
-                name: "EventRecords",
+                id: '6',
+                title: '活動紀錄區',
+                icon: 'Basketball',
+                name: 'EventRecords',
               },
               {
-                id: "7",
-                title: "意見回饋區",
-                icon: "ChatLineSquare",
-                name: "FeedbackRecords",
+                id: '7',
+                title: '意見回饋區',
+                icon: 'ChatLineSquare',
+                name: 'FeedbackRecords',
               },
             ],
           },

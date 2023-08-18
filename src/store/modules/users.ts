@@ -1,4 +1,4 @@
-import { defineStore } from "pinia";
+import { defineStore } from 'pinia';
 
 interface UserType {
   token: string;
@@ -7,31 +7,31 @@ interface UserType {
 }
 
 const useUserStore = defineStore({
-  id: "users",
+  id: 'users',
   state: (): UserType => ({
-    token: "",
-    account: "",
+    token: '',
+    account: '',
     isInit: false,
   }),
   actions: {
     // 初始化使用者
     INIT_USER(respData: { account: string }) {
-      this.token = "FAKE_TOKEN";
+      this.token = 'FAKE_TOKEN';
       this.account = respData.account;
     },
     // 設定Token
-    SET_TOKEN(token: string = "") {
+    SET_TOKEN(token: string = '') {
       this.SET_LOCAL_TOKEN(token);
       this.token = token;
     },
     // 取得本地Token
     GET_LOCAL_TOKEN() {
-      const token = localStorage.getItem("token");
-      this.token = token ?? "";
+      const token = localStorage.getItem('token');
+      this.token = token ?? '';
     },
     // 設定本地token
     SET_LOCAL_TOKEN(token: string) {
-      localStorage.setItem("token", token);
+      localStorage.setItem('token', token);
     },
     async LOGIN_OUT(isForce: boolean) {
       try {
@@ -49,8 +49,8 @@ const useUserStore = defineStore({
     RESET_INFO() {
       return new Promise<void>((resolve) => {
         this.isInit = false;
-        this.account = "";
-        this.SET_TOKEN("");
+        this.account = '';
+        this.SET_TOKEN('');
         resolve();
       });
     },
