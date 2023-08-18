@@ -50,12 +50,16 @@
           :scrollbar-always-on="true"
         >
           <el-table-column prop="account" label="名稱" />
-          <el-table-column prop="memberType" label="會員身分">
+          <el-table-column prop="memberType" label="會員身分" :sortable="true">
             <template #default="{ row }">
               {{ MemberTypeMap.get(row.memberType) }}
             </template>
           </el-table-column>
-          <el-table-column prop="createTime" label="創建時間" />
+          <el-table-column
+            prop="createTime"
+            label="創建時間"
+            :sortable="true"
+          />
           <el-table-column label="管理">
             <template #default="{ row }">
               <el-button type="info" @click="openEditDialog(row.uid)">
