@@ -14,7 +14,12 @@
           :arrow="'never'"
           :indicator-position="'none'"
         >
-          <el-carousel-item v-for="item in currentImgData" :key="item">
+          <el-skeleton-item
+            v-if="currentImgData.length === 0"
+            variant="image"
+            class="h-full w-full"
+          />
+          <el-carousel-item v-else v-for="item in currentImgData" :key="item">
             <el-image :src="item" :fit="'contain'" class="w-full h-full" />
           </el-carousel-item>
         </el-carousel>
