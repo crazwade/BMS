@@ -4,106 +4,90 @@
       <el-icon class="mr-2"><ChatLineSquare /></el-icon>
       意見回饋
     </div>
-    <div class="my-1">
-      <div class="mb-4">
-        <label for="name" class="block text-gray-600 font-medium mb-1"
-          >姓名</label
-        >
-        <input
-          id="name"
-          v-model="formData.name"
-          type="text"
-          class="w-full p-2 border border-gray-300 rounded-lg"
-          placeholder="請輸入姓名"
-        />
-        <p v-if="errors.name" class="text-red-500 mt-1">{{ errors.name }}</p>
-      </div>
-      <div class="mb-4">
-        <label for="email" class="block text-gray-600 font-medium mb-1"
-          >Email</label
-        >
-        <input
-          id="email"
-          v-model="formData.email"
-          type="email"
-          class="w-full p-2 border border-gray-300 rounded-lg"
-          placeholder="請輸入Email"
-        />
-        <p v-if="errors.email" class="text-red-500 mt-1">{{ errors.email }}</p>
-      </div>
-      <div class="mb-4">
-        <label for="phone" class="block text-gray-600 font-medium mb-1"
-          >連絡電話</label
-        >
-        <input
-          id="phone"
-          v-model="formData.phone"
-          type="tel"
-          class="w-full p-2 border border-gray-300 rounded-lg"
-          placeholder="請輸入連絡電話"
-        />
-      </div>
-      <div class="mb-4">
-        <label for="feedback" class="block text-gray-600 font-medium mb-1"
-          >意見</label
-        >
-        <textarea
-          id="feedback"
-          v-model="formData.feedback"
-          class="w-full p-2 border border-gray-300 rounded-lg"
-          placeholder="請輸入您的意見"
-        ></textarea>
-        <p v-if="errors.feedback" class="text-red-500 mt-1">
-          {{ errors.feedback }}
-        </p>
-      </div>
-      <div class="text-center">
-        <button
-          type="button"
-          @click="submitForm()"
-          class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
-        >
-          意見送出
-        </button>
-      </div>
+    <div class="my-4">
+      <el-form
+        ref="feedbackForm"
+        :model="formData"
+        :rules="rules"
+        label-width="80px"
+      >
+        <el-form-item label="姓名" prop="name" class="my-7">
+          <el-input v-model="formData.name" placeholder="請輸入您的名稱" />
+        </el-form-item>
+        <el-form-item label="Email" prop="email" class="my-7">
+          <el-input
+            v-model="formData.email"
+            placeholder="請輸入您的信箱方便聯繫"
+          />
+        </el-form-item>
+        <el-form-item label="連絡電話" prop="phone" class="my-7">
+          <el-input v-model="formData.phone" placeholder="請輸入您的連絡電話" />
+        </el-form-item>
+        <el-form-item label="意見" prop="feedback" class="my-7">
+          <el-input
+            type="textarea"
+            v-model="formData.feedback"
+            placeholder="請輸入您的建議或意見"
+          />
+        </el-form-item>
+        <el-form-item>
+          <el-button type="primary" @click="submitForm(feedbackForm)">
+            提交意見
+          </el-button>
+        </el-form-item>
+      </el-form>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, reactive } from 'vue';
+import type { FormInstance, FormRules } from 'element-plus';
+import { showMessage } from '@/common/common';
 
-const formData = ref({
+interface RuleForm {
+  name: string;
+  email: string;
+  phone: string;
+  feedback: string;
+}
+
+const feedbackForm = ref<FormInstance>();
+
+const formData = reactive<RuleForm>({
   name: '',
   email: '',
   phone: '',
   feedback: '',
 });
 
-const errors = ref({
-  name: '',
-  email: '',
-  feedback: '',
+const rules = reactive<FormRules>({
+  name: [{ required: true, message: '請輸入姓名', trigger: 'blur' }],
+  email: [
+    { required: true, message: '請輸入Email', trigger: 'blur' },
+    { type: 'email', message: '請輸入有效的Email', trigger: 'blur' },
+  ],
+  phone: [{ required: false, message: '請輸入姓名', trigger: 'blur' }],
+  feedback: [{ required: true, message: '請輸入意見', trigger: 'blur' }],
 });
 
-function submitForm() {
-  errors.value.name = formData.value.name ? '' : '請輸入姓名';
-  errors.value.email = formData.value.email ? '' : '請輸入Email';
-  errors.value.feedback = formData.value.feedback ? '' : '請輸入您的意見';
+const resetForm = (formEl: FormInstance | undefined) => {
+  if (!formEl) return;
+  formEl.resetFields();
+};
 
-  // 验证是否有任何错误
-  // const hasErrors = Object.values(errors).some((item, index) => {
-  //   console.log(index);
-  //   console.log(item);
-  // });
+const submitForm = async (formEl: FormInstance | undefined) => {
+  if (!formEl) return;
 
-  console.log(Object.keys(errors));
-
-  // if (!hasErrors) {
-  //   // 在这里执行提交操作，可以访问 formData 中的数据
-  //   console.log('提交表單：', formData);
-  // }
-}
+  await formEl.validate((valid) => {
+    if (valid) {
+      showMessage('已收到您的建議', 'success');
+      console.log('submit!', formData);
+      // reset
+      resetForm(formEl);
+    }
+  });
+};
 </script>
 
 <style lang="scss" scoped></style>
