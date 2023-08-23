@@ -23,10 +23,16 @@ const usePermissionStore = defineStore({
     async INIT_PERMISSION(): Promise<boolean> {
       try {
         // TODO API 取得權限
+        // 權限設定
         const permissionResp = {
           success: true,
           data: {
-            permissions: ['READ/me', 'POST/login', 'POST/logout'],
+            permissions: [
+              'READ/me',
+              'POST/login',
+              'POST/logout',
+              'READ/get_events',
+            ],
           },
         };
 

@@ -1,22 +1,22 @@
-import type { AxiosRequestConfig } from "axios";
-import { apiErrorCode, ApiError } from "../apiErrorCode";
-import { use as useRequest } from "../request";
-import { usePermissionStore } from "../../store/store";
+import type { AxiosRequestConfig } from 'axios';
+import { apiErrorCode, ApiError } from '../apiErrorCode';
+import { use as useRequest } from '../request';
+import { usePermissionStore } from '../../store/store';
 
 function specialCheck(path: string, permissions: string[]) {
   const permissionFilter = permissions.filter((permission) =>
-    permission.includes(":")
+    permission.includes(':')
   );
   for (let i = 0; i < permissionFilter.length; i += 1) {
     const permission = permissionFilter[i];
 
-    const permissionSplit = permission.split("/");
-    const pathSplit = path.split("/");
+    const permissionSplit = permission.split('/');
+    const pathSplit = path.split('/');
 
     if (permissionSplit.length === pathSplit.length) {
       let isSame = true;
       permissionSplit.forEach((e, index) => {
-        if (!e.includes(":") && e !== pathSplit[index]) {
+        if (!e.includes(':') && e !== pathSplit[index]) {
           isSame = false;
         }
       });
@@ -35,7 +35,7 @@ function specialCheck(path: string, permissions: string[]) {
 // 加上從API permissions 拿到的權限來做比對(權限)
 function checkPath(path: string) {
   const permissionStore = usePermissionStore();
-  const whiteList: string[] = ["CREATE/login", "CREATE/logout"];
+  const whiteList: string[] = ['CREATE/login', 'CREATE/logout'];
 
   if (
     whiteList.includes(path) ||
@@ -51,15 +51,15 @@ function checkPath(path: string) {
 
 function mapHttpMethodToPermission(method: string): string {
   switch (method.toUpperCase()) {
-    case "GET":
-      return "READ";
-    case "POST":
-      return "CREATE";
-    case "PATCH":
-    case "PUT":
-      return "UPDATE";
-    case "DELETE":
-      return "DELETE";
+    case 'GET':
+      return 'READ';
+    case 'POST':
+      return 'CREATE';
+    case 'PATCH':
+    case 'PUT':
+      return 'UPDATE';
+    case 'DELETE':
+      return 'DELETE';
     default:
       throw new Error(`Unsupported method: ${method}`);
   }
