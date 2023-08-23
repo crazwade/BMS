@@ -336,3 +336,49 @@ export const memberData = [
     createTime: '2021-10-06',
   },
 ];
+
+export const EventData = [
+  {
+    date: '2022-08-12',
+    join: 6,
+    totalJoin: 21,
+    imgData: [
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFOLEpMK2zHe3EVmWUlEipk57ongbc7kif0A&usqp=CAU',
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMs9dsNtWEwE0mj1lYXzb3kjZmEImwwwr6aA&usqp=CAU',
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3UUWCvktdONcSd5Yo72y8nujJaeMqh6_l5Q&usqp=CAU',
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyS4vfeQB5UUy9z4uTcGRIg25DnsPHQOn5Yw&usqp=CAU',
+    ],
+  },
+  {
+    date: '2022-08-17',
+    join: 10,
+    totalJoin: 25,
+    imgData: [
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSwghmqnXOm7elulMdNSKYNOAOt3ePpCTVLg&usqp=CAU',
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfZH-4y0IzpSfgyTT0fnjs8iC0ck8AubNrSg&usqp=CAU',
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQFgoLGKiTPzL4L8sayr2SnI7cA1t1xknBy0A&usqp=CAU',
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNDcteok2h0p0vqC2u-1YZ6u64-K6x8PazFA&usqp=CAU',
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQkywvb8wvEuZmXMW8Fxa88UysmFav4Tb85cw&usqp=CAU',
+    ],
+  },
+  {
+    date: '2022-08-21',
+    join: 15,
+    totalJoin: 20,
+    imgData: [
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQS-qUTmdxk-Z0-2F5F8MU87EAJXAKgwG28wQ&usqp=CAU',
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBI9rp3H4BUI7vhg1TcRPZGrgZuo974w3vzw&usqp=CAU',
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQX4qqoD9AqmBpPzDvxJfsEG2cLJBrk2S9mCQ&usqp=CAU',
+    ],
+  },
+  {
+    date: '2022-08-29',
+    join: 12,
+    totalJoin: 15,
+    imgData: [
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQT_wxpZ4FYtYZk4JA9pmEcQ_KcmW-4gPXYxg&usqp=CAU',
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPzLiHducs32XAPfvMc6S7aJzDlgZm6JrtKw&usqp=CAU',
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdDR4_939DW1dySvPUQd3_vAZ4voGeU5xX8w&usqp=CAU',
+    ],
+  },
+];
